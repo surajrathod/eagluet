@@ -1,13 +1,34 @@
 const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
-
+app.allowRendererProcessReuse = true
 let mainWindow = null;
 
 function createWindow() {
     const windowsOptions = {
         width: 600,
-        height: 700,
-        show: false
+        height: 700
     }
-    mainWindow = new BrowserWindow(windowsOptions)
+    mainWindow = new BrowserWindow(windowsOptions);
+    mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
+    mainWindow.on('close', () => {
+        mainWindow = null;
+    })
+
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show()
+    })
 }
+app.on('ready', () => {
+    createWindow()
+})
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
+app.on('activate', () => {
+    if (mainWindow === null) {
+        createWindow();
+    }
+})
