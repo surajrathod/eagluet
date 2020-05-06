@@ -7,7 +7,9 @@ let mainWindow = null;
 function createWindow() {
     const windowsOptions = {
         width: 600,
-        height: 700
+        height: 600,
+        frame: false,
+        show: false
     }
     mainWindow = new BrowserWindow(windowsOptions);
     mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
@@ -18,7 +20,9 @@ function createWindow() {
     mainWindow.once('ready-to-show', () => {
         mainWindow.show()
     })
+
 }
+
 app.on('ready', () => {
     createWindow()
 })

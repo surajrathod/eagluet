@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  box-sizing: border-box;
+}
+nav.navigations {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--Grey);
+  align-items: center;
+  height: 46px;
+}
+.bar {
+  display: flex;
+  margin-right: 0.5em;
+  height: 46px;
+}
+.setting {
+  margin-left: 0.5em;
+}
+
+.icon {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.bar > .icon {
+  padding: 0 0.4em;
+}
+
