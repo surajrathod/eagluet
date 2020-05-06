@@ -1,15 +1,20 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
+require('electron-reload')(__dirname);
+
 app.allowRendererProcessReuse = true
 let mainWindow = null;
 
 function createWindow() {
     const windowsOptions = {
-        width: 600,
-        height: 600,
+        width: 450,
+        height: 400,
         frame: false,
-        show: false
+        show: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
     }
     mainWindow = new BrowserWindow(windowsOptions);
     mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
@@ -18,7 +23,7 @@ function createWindow() {
     })
 
     mainWindow.once('ready-to-show', () => {
-        mainWindow.show()
+        mainWindow.show();
     })
 
 }

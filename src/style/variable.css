@@ -1,3 +1,5 @@
-:root{
-    --Grey:rgb(216, 216, 216);
+:root {
+  --primary-color: #10455b;
+  --secondary-color: #ffaf20;
+  --offwhite: #f2f3ff;
 }
