@@ -10,7 +10,7 @@
   <body>
     <!-- top navigation -->
     <nav class="navigations">
-      <div class="logo">nmnm</div>
+      <p class="logo">Parrotik</p>
       <div class="bar">
         <div class="icon minimize__btn">
           <svg
@@ -41,9 +41,35 @@
       </div>
     </nav>
 
+    <div class="clock__area">
+      <h2 class="clock__area-text">FOCUS</h2>
+      <div class="clock__inner">
+        <div class="clock__shape clock__minutes">
+          <p class="clock__text">3</p>
+        </div>
+        <div class="clock__shape clock__seconds">
+          <p class="clock__text">30</p>
+        </div>
+        <div class="clock__play">
+          <!-- play button -->
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="35"
+            viewBox="0 0 24 24"
+            width="35"
+            fill="var(--offwhite)"
+          >
+            <path d="M8 5v14l11-7z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+          <!-- end playbutton -->
+        </div>
+      </div>
+    </div>
     <!-- bottom navigation -->
     <footer class="bottom__footer">
-      <div class="icon timer">
+      <div class="icon timer__btn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -57,7 +83,7 @@
           />
         </svg>
       </div>
-      <div class="icon info">
+      <div class="icon info__btn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -72,6 +98,6 @@
         </svg>
       </div>
     </footer>
-    <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/navigations.js"></script>
   </body>
 </html>

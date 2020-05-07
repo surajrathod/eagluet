@@ -10,13 +10,15 @@
 
 body {
   font-size: 20px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
   box-sizing: border-box;
   background-color: var(--primary-color);
 }
 nav.navigations {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   background-color: var(--Grey);
   align-items: center;
   height: 2em;
@@ -25,7 +27,7 @@ nav.navigations {
 .logo {
   flex-basis: 55%;
   text-align: right;
-  letter-spacing: 0.1em;
+  color: var(--secondary-color);
 }
 .bar {
   display: flex;
@@ -40,10 +42,58 @@ nav.navigations {
 }
 
 .bottom__footer {
+  position: sticky;
+  bottom: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-left: 1.35em;
   margin-right: 1.35em;
   height: 2em;
+}
+
+.clock__area {
+  margin: 3.2em 0em 3.85em 1.1em;
+}
+.clock__area-text {
+  color: var(--offwhite);
+}
+.clock__inner {
+  display: flex;
+  flex-direction: row;
+  margin: 2em 0;
+  position: relative;
+}
+.clock__shape {
+  width: 4.35em;
+  height: 4.35em;
+  background-color: var(--offwhite);
+  margin: 0 0.4em 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clock__text {
+  font-size: 2em;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.clock__minutes {
+  border-radius: 0.5em 0 0 0.5em;
+}
+.clock__seconds {
+  border-radius: 0 0.5em 0.5em 0;
+}
+.clock__play {
+  width: 2em;
+  height: 2em;
+  background-color: var(--secondary-color);
+  border-radius: 100%;
+  position: absolute;
+  border: solid var(--primary-color);
+  top: 3.4em;
+  left: 3.6em;
+}
+.clock__play:hover > svg {
+  fill: var(--primary-color);
 }
