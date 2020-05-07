@@ -18,7 +18,7 @@ function createWindow() {
         }
     }
     mainWindow = new BrowserWindow(windowsOptions);
-    mainWindow.loadURL(path.join('file://', __dirname, '/index.html'))
+    mainWindow.loadURL(path.join('file://', __dirname, '/src/index.html'))
     mainWindow.on('close', () => {
         mainWindow = null;
     })
