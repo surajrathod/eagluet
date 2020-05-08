@@ -51,7 +51,6 @@ nav.navigations {
   padding-left: 1.35em;
   padding-right: 1.35em;
   height: 2.5em;
-  background-color: chartreuse;
 }
 
 .clock__area {
@@ -98,4 +97,19 @@ nav.navigations {
 }
 .clock__play:hover > svg {
   fill: var(--primary-color);
+}
+.timer__setting__area {
+  position: absolute;
+  top: 2em;
+  width: 22.5em;
+  height: 15em;
+  background-color: var(--primary-color);
+  transform: translate(-100%, 0);
+  transition: all 0.5s ease;
+}
+.--active_left {
+  transform: translate(0, 0);
+}
+.--iconactive > svg {
+  fill: var(--secondary-color);
 }
