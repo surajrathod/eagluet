@@ -47,9 +47,11 @@ nav.navigations {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 1.35em;
-  margin-right: 1.35em;
-  height: 2em;
+  align-items: center;
+  padding-left: 1.35em;
+  padding-right: 1.35em;
+  height: 2.5em;
+  background-color: chartreuse;
 }
 
 .clock__area {
