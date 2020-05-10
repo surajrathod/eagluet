@@ -85,7 +85,7 @@ nav.navigations {
 .clock__seconds {
   border-radius: 0 0.5em 0.5em 0;
 }
-.clock__play {
+.clock__play__pause {
   width: 2em;
   height: 2em;
   background-color: var(--secondary-color);
@@ -98,18 +98,98 @@ nav.navigations {
 .clock__play:hover > svg {
   fill: var(--primary-color);
 }
-.timer__setting__area {
+.timer-setting__area {
   position: absolute;
   top: 2em;
   width: 22.5em;
   height: 15em;
   background-color: var(--primary-color);
   transform: translate(-100%, 0);
+  /*transform: translate(0, 0);*/
   transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 .--active_left {
   transform: translate(0, 0);
 }
 .--iconactive > svg {
   fill: var(--secondary-color);
+}
+.timer-setting__box {
+  background-color: var(--primary-color-light);
+  border-radius: 5px;
+  width: 90%;
+  padding: 0.5em;
+}
+.timer-setting__titlesbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--offwhite);
+}
+span.range-slider__value {
+  font-size: 0.7em;
+  align-self: center;
+}
+
+/*rangeslider style*/
+.range-slider__range {
+  -webkit-appearance: none;
+  width: 100%;
+  background: var(--offwhite);
+  height: 0.5em;
+  border-radius: 0.5em;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+.range-slider__range:focus {
+  outline: none;
+}
+
+.range-slider__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.5em;
+  width: 1.5em;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 var(--secondary-color);
+  transition: box-shadow 0.15s ease;
+}
+.range-slider__range::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 1em var(--secondary-color);
+}
+
+.btn__group {
+  margin-left: 8em;
+}
+
+.btn {
+  padding: 0.5em 2em;
+  background: none;
+  font-size: 0.8em;
+  margin: 0 0.5em;
+  outline: none;
+}
+.btn__noround {
+  border: none;
+  color: var(--offwhite);
+}
+.btn__rounded {
+  border-radius: 2em;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+.btn__rounded:hover {
+  background-color: var(--secondary-color);
+  color: var(--offwhite);
+  cursor: pointer;
+}
+.btn__noround:hover {
+  color: var(--secondary-color);
+  cursor: pointer;
 }
