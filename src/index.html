@@ -50,7 +50,7 @@
         <div class="clock__shape clock__seconds">
           <p class="clock__text">30</p>
         </div>
-        <div class="clock__play">
+        <div class="clock__play__pause">
           <!-- play button -->
 
           <svg
@@ -68,8 +68,40 @@
       </div>
     </div>
 
-    <div class="timer__setting__area">
-      <h1>sdf</h1>
+    <div class="timer-setting__area">
+      <div class="timer-setting__box">
+        <div class="timer-setting__titlesbar">
+          <p class="timer-setting__title">Focus</p>
+          <span class="range-slider__value">50 min</span>
+        </div>
+
+        <input
+          class="range-slider__range"
+          type="range"
+          value="3"
+          min="0"
+          max="60"
+        />
+      </div>
+      <div class="timer-setting__box">
+        <div class="timer-setting__titlesbar">
+          <p class="timer-setting__title">Break</p>
+          <span class="range-slider__value">50 min</span>
+        </div>
+
+        <input
+          class="range-slider__range"
+          type="range"
+          value="3"
+          min="0"
+          max="60"
+        />
+      </div>
+
+      <div class="btn__group">
+        <button class="btn btn__noround cancel__btn">cancel</button>
+        <button class="btn btn__rounded save__btn">Save</button>
+      </div>
     </div>
     <!-- bottom navigation -->
     <footer class="bottom__footer">
