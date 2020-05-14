@@ -10,7 +10,7 @@
 
 body {
   font-size: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   box-sizing: border-box;
   background-color: var(--primary-color);
@@ -85,7 +85,7 @@ nav.navigations {
 .clock__seconds {
   border-radius: 0 0.5em 0.5em 0;
 }
-.clock__play__pause {
+.clock__play {
   width: 2em;
   height: 2em;
   background-color: var(--secondary-color);
@@ -94,6 +94,19 @@ nav.navigations {
   border: solid var(--primary-color);
   top: 3.4em;
   left: 3.6em;
+}
+.clock__stop {
+  width: 2em;
+  height: 2em;
+  background-color: var(--secondary-color);
+  border-radius: 100%;
+  position: absolute;
+  border: solid var(--primary-color);
+  top: 3.4em;
+  left: 3.6em;
+}
+.hidden {
+  display: none;
 }
 .clock__play:hover > svg {
   fill: var(--primary-color);
