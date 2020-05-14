@@ -1,5 +1,6 @@
 const { remote } = require("electron");
 const { base, debounce } = require("./utils");
+const Timer = require("./Timer")
 
 
 
@@ -8,7 +9,39 @@ let defaultsetting = {
   break: 4
 }
 
+let a = new Timer(defaultsetting.focus)
 
+base.CLOCK_PLAY.addEventListener("click", function (e) {
+  base.CLOCK_PLAY.classList.add("hidden")
+  base.CLOCK_STOP.classList.remove("hidden")
+  a.startTimer();
+})
+base.CLOCK_STOP.addEventListener("click", function (e) {
+  base.CLOCK_PLAY.classList.remove("hidden")
+  base.CLOCK_STOP.classList.add("hidden")
+  a.pauseTimer();
+})
+
+//call the close window function
+base.CLOSE.addEventListener("click", closeWindow);
+
+//call the minimizewindow window function
+base.MINIMIZE.addEventListener("click", minimizeWindow);
+
+
+
+base.TIMER_SETTING.addEventListener("click", toggleLeft);
+base.CANCEL.addEventListener("click", toggleLeft);
+base.SAVE.addEventListener("click", saveData);
+
+
+window.addEventListener("load", ClockSetup);
+
+
+function ClockSetup() {
+  base.CLOCK_MINUTES.firstElementChild.innerHTML = defaultsetting.focus
+  base.CLOCK_SECONDS.firstElementChild.innerHTML = "00"
+}
 
 base.RANGE_SLIDER.forEach((element) => {
 
@@ -38,43 +71,24 @@ base.RANGE_SLIDER.forEach((element) => {
 });
 
 
-base.SAVE.addEventListener("click", function () {
+
+
+function saveData() {
   localStorage.setItem("uservalue", JSON.stringify(defaultsetting));
   console.log(localStorage.getItem("uservalue"))
   toggleLeft()
-});
+  ClockSetup()
+
+}
 
 
 
-
-
-
-
-
-
-
-
-//call the close window function
-base.CLOSE.addEventListener("click", closeWindow);
-
-//call the minimizewindow window function
-base.MINIMIZE.addEventListener("click", minimizeWindow);
-
-
-
-base.TIMER_SETTING.addEventListener("click", toggleLeft);
-base.CANCEL.addEventListener("click", toggleLeft);
 function toggleLeft() {
 
   base.TIMER_SETTING_AREA.classList.toggle("--active_left")
   base.TIMER_SETTING.classList.toggle("--iconactive")
 
-
 }
-
-//render to the dom
-
-
 
 //close the window when click on close button
 function closeWindow() {
@@ -86,3 +100,7 @@ function minimizeWindow() {
   let window = remote.getCurrentWindow();
   window.minimize();
 }
+
+
+
+
