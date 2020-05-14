@@ -108,7 +108,7 @@ nav.navigations {
 .hidden {
   display: none;
 }
-.clock__play:hover > svg {
+.clock__btn:hover > svg {
   fill: var(--primary-color);
 }
 .timer-setting__area {
