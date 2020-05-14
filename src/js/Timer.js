@@ -1,32 +1,35 @@
-const { base } = require("./base");
+const { base } = require("./utils");
 
 class Timer {
-    constructor() {
+    constructor(sessionMinute) {
+        this.sessionMinute = sessionMinute
         this.playing = false,
             this.timerId,
+            this.countdown = null
 
     }
 
-    counter(sessionCount) {
-        let timerId;
-        this.playing = !this.playing
+    counter() {
         if (!this.playing) {
             clearInterval(this.timerId);
             return
         }
 
-        let countdown = sessionCount * 60 * 1000;
-        console.log(countdown)
+        if (this.countdown == null) {
+            this.countdown = this.sessionMinute * 60 * 1000;
+        }
+        console.log(this.countdown)
         this.timerId = setInterval(() => {
             if (this.playing == true) {
-                countdown -= 1000;
-                let min = Math.floor(countdown / (60 * 1000));
-                let sec = Math.floor((countdown - (min * 60 * 1000)) / 1000);
+                this.countdown -= 1000;
+                let min = Math.floor(this.countdown / (60 * 1000));
+                let sec = Math.floor((this.countdown - (min * 60 * 1000)) / 1000);
                 console.log(min)
-                if (countdown <= 0) {
-                    clearInterval(timerId);
+                if (this.countdown <= 0) {
+                    clearInterval(this.timerId);
                     this.playing = false;
                 } else {
+                    console.log({ min, sec })
                     base.CLOCK_MINUTES.firstElementChild.innerHTML = min;
                     base.CLOCK_SECONDS.firstElementChild.innerHTML = sec;
 
@@ -35,5 +38,16 @@ class Timer {
         }, 1000);
         return
     }
+    startTimer() {
+        this.playing = !this.playing
+        this.counter();
+    }
+
+    pauseTimer() {
+        this.playing = !this.playing;
+        clearInterval(this.timerId);
+    }
 }
-module.exports.Timer = Timer;
+
+
+module.exports = Timer;
