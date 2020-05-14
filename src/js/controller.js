@@ -11,12 +11,12 @@ let defaultsetting = {
 
 let a = new Timer(defaultsetting.focus)
 
-base.CLOCK_PLAY.addEventListener("click", function (e) {
+base.CLOCK_PLAY.addEventListener("click", function () {
   base.CLOCK_PLAY.classList.add("hidden")
   base.CLOCK_STOP.classList.remove("hidden")
   a.startTimer();
 })
-base.CLOCK_STOP.addEventListener("click", function (e) {
+base.CLOCK_STOP.addEventListener("click", function () {
   base.CLOCK_PLAY.classList.remove("hidden")
   base.CLOCK_STOP.classList.add("hidden")
   a.pauseTimer();
