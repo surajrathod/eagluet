@@ -50,9 +50,7 @@
         <div class="clock__shape clock__seconds">
           <p class="clock__text">30</p>
         </div>
-        <div class="clock__play__pause">
-          <!-- play button -->
-
+        <div class="clock__play">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="35"
@@ -63,7 +61,20 @@
             <path d="M8 5v14l11-7z" />
             <path d="M0 0h24v24H0z" fill="none" />
           </svg>
-          <!-- end playbutton -->
+          <!-- play button -->
+        </div>
+
+        <div class="clock__stop hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="35"
+            viewBox="0 0 24 24"
+            width="35"
+            fill="var(--offwhite)"
+          >
+            <path d="M0 0h24v24H0V0z" fill="none" />
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
         </div>
       </div>
     </div>
@@ -72,13 +83,14 @@
       <div class="timer-setting__box">
         <div class="timer-setting__titlesbar">
           <p class="timer-setting__title">Focus</p>
-          <span class="range-slider__value">50 min</span>
+          <span class="range-slider__value"></span>
         </div>
 
         <input
           class="range-slider__range"
+          data-mode="focus"
           type="range"
-          value="3"
+          value=""
           min="0"
           max="60"
         />
@@ -86,18 +98,18 @@
       <div class="timer-setting__box">
         <div class="timer-setting__titlesbar">
           <p class="timer-setting__title">Break</p>
-          <span class="range-slider__value">50 min</span>
+          <span class="range-slider__value"></span>
         </div>
 
         <input
           class="range-slider__range"
           type="range"
-          value="3"
+          data-mode="break"
+          value=""
           min="0"
           max="60"
         />
       </div>
-
       <div class="btn__group">
         <button class="btn btn__noround cancel__btn">cancel</button>
         <button class="btn btn__rounded save__btn">Save</button>
@@ -134,6 +146,8 @@
         </svg>
       </div>
     </footer>
-    <script src="./scripts/navigations.js"></script>
+    <script>
+      require("./js/controller.js");
+    </script>
   </body>
 </html>
