@@ -47,6 +47,11 @@ class Timer {
         this.playing = !this.playing;
         clearInterval(this.timerId);
     }
+
+    stopTimer() {
+        this.countdown = 0;
+        this.pauseTimer();
+    }
 }
 
 
