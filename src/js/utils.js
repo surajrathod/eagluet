@@ -9,6 +9,7 @@ module.exports.base = {
     CLOCK_MINUTES: document.querySelector(".clock__minutes"),
     CLOCK_SECONDS: document.querySelector(".clock__seconds"),
     CLOCK_PLAY: document.querySelector(".clock__play"),
+    CLOCK_PAUSE: document.querySelector(".clock__pause"),
     CLOCK_STOP: document.querySelector(".clock__stop"),
     RANGE_SLIDER: document.querySelectorAll(".range-slider__range"),
 };
