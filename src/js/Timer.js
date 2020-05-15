@@ -28,8 +28,10 @@ class Timer {
                 if (this.countdown <= 0) {
                     clearInterval(this.timerId);
                     this.playing = false;
+                    return "Complete"
                 } else {
-                    console.log({ min, sec })
+                    console.log({ min, sec, })
+                    console.log(this.countdown)
                     base.CLOCK_MINUTES.firstElementChild.innerHTML = min;
                     base.CLOCK_SECONDS.firstElementChild.innerHTML = sec;
 
@@ -49,8 +51,13 @@ class Timer {
     }
 
     stopTimer() {
-        this.countdown = 0;
-        this.pauseTimer();
+        this.countdown = null;
+        clearInterval(this.timerId)
+        this.timerId = null;
+        this.playing = false;
+    }
+    isPlaying() {
+        return this.isPlaying;
     }
 }
 
