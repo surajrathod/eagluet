@@ -10,8 +10,7 @@
 
 body {
   font-size: 20px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
+  font-family: Nunito, sans-serif;
   box-sizing: border-box;
   background-color: var(--primary-color);
 }
@@ -50,11 +49,10 @@ nav.navigations {
   align-items: center;
   padding-left: 1.35em;
   padding-right: 1.35em;
-  height: 2.5em;
 }
 
 .clock__area {
-  margin: 3.2em 0em 3.85em 1.1em;
+  margin: 3.2em 0em 2.2em 1.1em;
 }
 .clock__area-text {
   color: var(--offwhite);
@@ -62,8 +60,16 @@ nav.navigations {
 .clock__inner {
   display: flex;
   flex-direction: row;
-  margin: 2em 0;
+  margin: 2em 0 1em;
   position: relative;
+}
+.clock__btntext {
+  color: var(--offwhite-light);
+  font-weight: 200;
+  cursor: pointer;
+}
+.clock__btntext:hover {
+  color: var(--secondary-color);
 }
 .clock__shape {
   width: 4.35em;
@@ -76,7 +82,7 @@ nav.navigations {
 }
 .clock__text {
   font-size: 2em;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--primary-color);
 }
 .clock__minutes {
@@ -85,7 +91,7 @@ nav.navigations {
 .clock__seconds {
   border-radius: 0 0.5em 0.5em 0;
 }
-.clock__play {
+.clock__btn {
   width: 2em;
   height: 2em;
   background-color: var(--secondary-color);
@@ -95,16 +101,7 @@ nav.navigations {
   top: 3.4em;
   left: 3.6em;
 }
-.clock__stop {
-  width: 2em;
-  height: 2em;
-  background-color: var(--secondary-color);
-  border-radius: 100%;
-  position: absolute;
-  border: solid var(--primary-color);
-  top: 3.4em;
-  left: 3.6em;
-}
+
 .hidden {
   display: none;
 }
@@ -187,6 +184,7 @@ span.range-slider__value {
   font-size: 0.8em;
   margin: 0 0.5em;
   outline: none;
+  font-family: Nunito, sans-serif;
 }
 .btn__noround {
   border: none;
