@@ -116,19 +116,19 @@ const SliderRender = () => {
 
     if (dataset == "focus") {
 
-      InputSlider.value = UserSetting["focus"]
+      InputSlider.value = `${UserSetting["focus"]}:00`
       TextElement.innerHTML = UserSetting["focus"]
 
     } else if (dataset == "break") {
 
-      InputSlider.value = UserSetting["break"]
+      InputSlider.value = `${UserSetting["break"]}:00`
       TextElement.innerHTML = UserSetting["break"]
 
     }
 
     /**limit the event call for the slider by debouncing the call  */
     InputSlider.addEventListener("input", debounce(function (event) {
-      event.srcElement.previousElementSibling.lastElementChild.textContent = event.target.value;
+      event.srcElement.previousElementSibling.lastElementChild.textContent = `${event.target.value}:00`;
       UserSetting[event.srcElement.dataset.mode] = Number(event.target.value);
       console.log(UserSetting, event.srcElement.dataset.mode)
 
