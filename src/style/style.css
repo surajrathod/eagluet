@@ -143,6 +143,9 @@ nav.navigations {
 span.range-slider__value {
   font-size: 0.7em;
   align-self: center;
+  border-radius: 2px;
+  padding: 1px 5px;
+  background-color: var(--primary-color);
 }
 
 /*rangeslider style*/
@@ -189,6 +192,8 @@ span.range-slider__value {
 .btn__noround {
   border: none;
   color: var(--offwhite);
+  padding: 0;
+  font-weight: 200;
 }
 .btn__rounded {
   border-radius: 2em;
