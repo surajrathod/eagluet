@@ -3,7 +3,7 @@ module.exports.base = {
     MINIMIZE: document.querySelector(".minimize__btn"),
     TIMER_SETTING: document.querySelector(".timer__btn"),
     TIMER_SETTING_AREA: document.querySelector(".timer-setting__area"),
-    CANCEL: document.querySelector(".cancel__btn"),
+    RESET: document.querySelector(".reset__btn"),
     SAVE: document.querySelector(".save__btn"),
     TIMER_SETTING_BOX: document.querySelectorAll(".timer-setting__box"),
     CLOCK_MINUTES: document.querySelector(".clock__minutes"),
