@@ -1,4 +1,4 @@
-const { remote } = require("electron");
+const { remote, ipcRenderer } = require("electron");
 const { base, debounce } = require("./utils");
 const Timer = require("./Timer");
 
@@ -73,7 +73,7 @@ function saveData() {
   //stop the timer
   FocusMode.stopTimer();
   //set the new Timer Minutes
-  FocusMode = new Timer(UserSetting.focus)
+  FocusMode = new Timer(UserSetting.focus, "focus")
   //Render the button based on playing or pause
   ClockBtnRender();
   //render the clock
@@ -116,13 +116,13 @@ const SliderRender = () => {
 
     if (dataset == "focus") {
 
-      InputSlider.value = `${UserSetting["focus"]}:00`
-      TextElement.innerHTML = UserSetting["focus"]
+      InputSlider.value = UserSetting["focus"]
+      TextElement.innerHTML = `${UserSetting["focus"]}:00`
 
     } else if (dataset == "break") {
 
-      InputSlider.value = `${UserSetting["break"]}:00`
-      TextElement.innerHTML = UserSetting["break"]
+      InputSlider.value = UserSetting["break"]
+      TextElement.innerHTML = `${UserSetting["break"]}:00`
 
     }
 
@@ -154,7 +154,7 @@ base.RESET.addEventListener("click", () => {
   UserSetting = JSON.parse(Storage.getItem(DEFAULT_STORAGE_KEY));
   // UserSetting = defaultsetting;
   FocusMode.stopTimer()
-  FocusMode = new Timer(UserSetting.focus)
+  FocusMode = new Timer(UserSetting.focus, "focus")
 
   //Render the button based on playing or pause
   ClockBtnRender();
@@ -180,10 +180,27 @@ window.addEventListener("load", () => {
   }
 
   UserSetting = JSON.parse(Storage.getItem(USER_STORAGE_KEY));
-  FocusMode = new Timer(UserSetting.focus)
+  FocusMode = new Timer(UserSetting.focus, "focus")
+  console.log(FocusMode)
   ClockSetup();
   SliderRender();
 });
+
+/**
+ * Listen for the 'renderDefaultClock'
+ * from the main process
+ * reset the clock to default state
+ * 
+ */
+
+ipcRenderer.on("renderDefaultClock", function () {
+  console.log(FocusMode)
+  ClockBtnRender()
+  ClockSetup()
+  console.log(FocusMode)
+
+})
+
 
 
 
