@@ -1,12 +1,15 @@
 const { base } = require("./utils");
+const { ipcRenderer } = require("electron");
+// const notifier = require("node-notifier");
+
 
 class Timer {
-    constructor(sessionMinute) {
-        this.sessionMinute = sessionMinute
-        this.playing = false,
-            this.timerId,
-            this.countdown = null
-
+    constructor(sessionMinute, mode) {
+        this.sessionMinute = sessionMinute;
+        this.playing = false;
+        this.countdown = null;
+        this.mode = mode;
+        this.timerId;
     }
 
     counter() {
@@ -24,13 +27,34 @@ class Timer {
                 this.countdown -= 1000;
                 let min = Math.floor(this.countdown / (60 * 1000));
                 let sec = Math.floor((this.countdown - (min * 60 * 1000)) / 1000);
-                console.log(min)
+
                 if (this.countdown <= 0) {
-                    clearInterval(this.timerId);
-                    this.playing = false;
-                } else {
-                    base.CLOCK_MINUTES.firstElementChild.innerHTML = min;
-                    base.CLOCK_SECONDS.firstElementChild.innerHTML = sec;
+                    this.stopTimer()
+                    ipcRenderer.send("Countdown-Complete");
+
+
+                } else if (this.countdown === 54000) {
+                    this._renderMinuteSecond(min, sec);
+
+
+
+                    // let nextMode
+                    // switch (this.mode) {
+                    //     case "focus":
+                    //         nextMode = "break"
+                    //         break;
+                    //     case "break":
+                    //         nextMode = "focus"
+                    //         break;
+                    // }
+                    // notifier.notify({
+                    //     title: nextMode,
+                    //     message: "be prepared",
+                    //     sound: true,
+                    // })
+                }
+                else {
+                    this._renderMinuteSecond(min, sec);
 
                 }
             }
@@ -55,6 +79,10 @@ class Timer {
     }
     isPlaying() {
         return this.playing;
+    }
+    _renderMinuteSecond(min, sec) {
+        base.CLOCK_MINUTES.firstElementChild.innerHTML = min;
+        base.CLOCK_SECONDS.firstElementChild.innerHTML = sec;
     }
 }
 
