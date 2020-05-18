@@ -2,6 +2,8 @@ const { remote, ipcRenderer } = require("electron");
 const { base, debounce } = require("./utils");
 const Timer = require("./Timer");
 
+
+
 const USER_STORAGE_KEY = "USERSETTINGS";
 const DEFAULT_STORAGE_KEY = "DEFAULTSETTINGS";
 let Storage = localStorage;
@@ -200,6 +202,7 @@ ipcRenderer.on("renderDefaultClock", function () {
   console.log(FocusMode)
 
 })
+
 
 
 
