@@ -12,5 +12,8 @@
     "electron": "^8.2.4",
     "electron-reload": "^1.5.0",
     "eslint": "^7.0.0"
+  },
+  "dependencies": {
+    "node-notifier": "^7.0.0"
   }
 }
