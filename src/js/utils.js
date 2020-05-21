@@ -14,6 +14,11 @@ module.exports.base = {
     RANGE_SLIDER: document.querySelectorAll(".range-slider__range"),
 };
 
+module.exports.ConstantValue = {
+    USER_STORAGE_KEY: "USERSETTINGS",
+    DEFAULT_STORAGE_KEY: "DEFAULTSETTINGS",
+}
+
 module.exports.debounce = (func, delay) => {
     let inDebounce;
     return function () {
