@@ -2,32 +2,33 @@
   --primary-color: #10455b;
   --primary-color-light: #12536e;
   --secondary-color: #ffaf20;
+  --secondary-color-light: #ffad20da;
   --offwhite: #f2f3ff;
   --offwhite-light: #c2d6de;
+  --transparent: rgba(16, 69, 91, 0.555);
 }
 
 /* nunito-200 - latin */
 @font-face {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-style: normal;
   font-weight: 200;
-  src: local('Nunito ExtraLight'), local('Nunito-ExtraLight'),
-       url('../fonts/nunito-v12-latin-200.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local("Nunito ExtraLight"), local("Nunito-ExtraLight"),
+    url("../fonts/nunito-v12-latin-200.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* nunito-regular - latin */
 @font-face {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
-  src: local('Nunito Regular'), local('Nunito-Regular'),
-       url('../fonts/nunito-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local("Nunito Regular"), local("Nunito-Regular"),
+    url("../fonts/nunito-v12-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* nunito-700 - latin */
 @font-face {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
-  src: local('Nunito Bold'), local('Nunito-Bold'),
-
-       url('../fonts/nunito-v12-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  src: local("Nunito Bold"), local("Nunito-Bold"),
+    url("../fonts/nunito-v12-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
