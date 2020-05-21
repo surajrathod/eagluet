@@ -1,18 +1,15 @@
 const { remote, ipcRenderer } = require("electron");
-const { base, debounce } = require("./utils");
+const { base, debounce, ConstantValue } = require("./utils");
 const Timer = require("./Timer");
 
 
-
-const USER_STORAGE_KEY = "USERSETTINGS";
-const DEFAULT_STORAGE_KEY = "DEFAULTSETTINGS";
 let Storage = localStorage;
 let UserSetting;
 let FocusMode;
 
 let defaultsetting = {
   focus: 25,
-  break: 4
+  break: 1
 };
 
 
@@ -71,7 +68,7 @@ function ClockSetup() {
  */
 function saveData() {
   //set the Storage to the new UserSetting
-  Storage.setItem(USER_STORAGE_KEY, JSON.stringify(UserSetting));
+  Storage.setItem(ConstantValue.USER_STORAGE_KEY, JSON.stringify(UserSetting));
   //stop the timer
   FocusMode.stopTimer();
   //set the new Timer Minutes
@@ -95,8 +92,11 @@ const toggleLeft = () => {
 
 //close the window when click on close button
 function closeWindow() {
-  let window = remote.getCurrentWindow();
-  window.close();
+  //  let window = remote.getCurrentWindow();
+  remote.BrowserWindow.getAllWindows().forEach((window) => {
+    window.close()
+  })
+  // window.close();
 }
 //minimize the window when click on minimize button
 function minimizeWindow() {
@@ -152,8 +152,8 @@ base.TIMER_SETTING.addEventListener("click", toggleLeft);
 
 //cancel the setting and set previous setting
 base.RESET.addEventListener("click", () => {
-  Storage.setItem(USER_STORAGE_KEY, JSON.stringify(defaultsetting));
-  UserSetting = JSON.parse(Storage.getItem(DEFAULT_STORAGE_KEY));
+  Storage.setItem(ConstantValue.USER_STORAGE_KEY, JSON.stringify(defaultsetting));
+  UserSetting = JSON.parse(Storage.getItem(ConstantValue.DEFAULT_STORAGE_KEY));
   // UserSetting = defaultsetting;
   FocusMode.stopTimer()
   FocusMode = new Timer(UserSetting.focus, "focus")
@@ -176,12 +176,12 @@ window.addEventListener("load", () => {
    * UserSetting Storage to the value
    */
 
-  if (!Storage.getItem(USER_STORAGE_KEY) || !Storage.getItem(DEFAULT_STORAGE_KEY)) {
-    Storage.setItem(DEFAULT_STORAGE_KEY, JSON.stringify(defaultsetting));
-    Storage.setItem(USER_STORAGE_KEY, JSON.stringify(defaultsetting));
+  if (!Storage.getItem(ConstantValue.USER_STORAGE_KEY) || !Storage.getItem(ConstantValue.DEFAULT_STORAGE_KEY)) {
+    Storage.setItem(ConstantValue.DEFAULT_STORAGE_KEY, JSON.stringify(defaultsetting));
+    Storage.setItem(ConstantValue.USER_STORAGE_KEY, JSON.stringify(defaultsetting));
   }
 
-  UserSetting = JSON.parse(Storage.getItem(USER_STORAGE_KEY));
+  UserSetting = JSON.parse(Storage.getItem(ConstantValue.USER_STORAGE_KEY));
   FocusMode = new Timer(UserSetting.focus, "focus")
   console.log(FocusMode)
   ClockSetup();
@@ -196,11 +196,9 @@ window.addEventListener("load", () => {
  */
 
 ipcRenderer.on("renderDefaultClock", function () {
-  console.log(FocusMode)
+
   ClockBtnRender()
   ClockSetup()
-  console.log(FocusMode)
-
 })
 
 
