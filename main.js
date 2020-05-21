@@ -9,24 +9,26 @@ require("electron-reload")(__dirname);
 
 app.allowRendererProcessReuse = true
 let mainWindow = null;
+let secondWindow = null;
 
 
 let notification = new Notification();
 
-function createWindow() {
+function CreateMainWindow() {
 
-    const windowsOptions = {
+    const MainWindowOptions = {
         width: 450,
         height: 400,
         frame: false,
         show: false,
         resizable: false,
-        alwaysOnTop: true,
+
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+
     }
-    mainWindow = new BrowserWindow(windowsOptions);
+    mainWindow = new BrowserWindow(MainWindowOptions);
     mainWindow.loadURL(path.join("file://", __dirname, "/src/index.html"))
     mainWindow.on("close", () => {
         mainWindow = null;
@@ -35,14 +37,25 @@ function createWindow() {
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
     })
+}
 
-
-    // secondWindow = new BrowserWindow({ width: 500, height: 500, show: false, alwaysOnTop: true, frame: false, transparent: true })
-    // secondWindow.loadURL(path.join("file://", __dirname, "/src/focus.html"))
-    // secondWindow.on("close", () => {
-    //     secondWindow = null
-    // })
-
+function CreateSecondWindow() {
+    secondWindow = new BrowserWindow(
+        {
+            frame: false,
+            fullscreen: true,
+            transparent: true,
+            alwaysOnTop: true,
+            // show: false,
+            webPreferences:
+                { nodeIntegration: true }
+        })
+    secondWindow.loadURL(path.join("file://", __dirname, "/src/overlayscreen.html"))
+    secondWindow.on("close", () => {
+        secondWindow = null
+    })
+    secondWindow.show();
+    // secondWindow.maximize();
 
 
 }
@@ -55,6 +68,17 @@ function createWindow() {
 
 ipcMain.on("Countdown-Complete", function (event) {
     event.sender.send("renderDefaultClock");
+
+    // CreateSecondWindow();
+
+    // secondWindow.once("ready-to-show", () => {
+    //     secondWindow.show();
+    // })
+})
+
+ipcMain.on("Close-Break-Window", function () {
+    secondWindow.close();
+
 })
 
 /**
@@ -63,21 +87,23 @@ ipcMain.on("Countdown-Complete", function (event) {
 
 //this will we called to the notification class which will display the message
 ipcMain.on("FiveSecondEarlyAlert", function (event, mode) {
-    
+
     notification.AlertFiveSecondEarly({
         title: "Information",
         mode: mode,
         message: "will start in 5 sec",
-        icon: "rest.png",
     });
+
 })
+
 
 
 app.on("ready", () => {
-    createWindow()
+    CreateMainWindow()
+    CreateSecondWindow();
 })
 app.on("activate", () => {
     if (mainWindow === null) {
-        createWindow();
+        CreateMainWindow();
     }
 })
