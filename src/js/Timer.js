@@ -36,13 +36,17 @@ class Timer {
                 // send message to the main process
                 if (this.countdown <= 0) {
                     this.stopTimer()
-                    ipcRenderer.send("Countdown-Complete");
+                    if (this.mode == "focus") {
+                        ipcRenderer.send("Countdown-Complete");
+                    } else if (this.mode == "break") {
+                        ipcRenderer.send("Close-Break-Window")
+                    }
 
-
-                } else if (this.countdown === 5000) {
+                } else if (this.countdown === 57000) {
                     //if counter has left with 5 second 
                     // notify the user for that
                     this._renderMinuteSecond(min, sec);
+                    console.log(this.mode)
                     ipcRenderer.send("FiveSecondEarlyAlert", this.mode);
                 }
                 else {
