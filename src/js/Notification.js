@@ -18,21 +18,23 @@ class Notification {
      * @param {Object} options 
      * @param {string} options.mode-{'focus','break'}
      * @param {string} options.message- message to be displayed
-     * @param {string} options.icon -icon name with format
      */
     AlertFiveSecondEarly(options) {
-        let nextmode
+        let nextmode;
+        let icon;
         switch (options.mode) {
             case "focus":
                 nextmode = "break";
+                icon = `${nextmode}.png`;
                 break;
 
-            case "beak":
+            case "break":
                 nextmode = "focus";
+                icon = `${nextmode}.png`;
                 break;
         }
-        console.log(__dirname)
-        this.createnotification(options.title, options.icon, options.message, nextmode);
+        console.log(icon)
+        this.createnotification(options.title, icon, options.message, nextmode);
     }
 
 
