@@ -34,6 +34,7 @@ function CreateMainWindow() {
         mainWindow = null;
     })
 
+
     mainWindow.once("ready-to-show", () => {
         mainWindow.show();
     })
@@ -43,10 +44,9 @@ function CreateSecondWindow() {
     secondWindow = new BrowserWindow(
         {
             frame: false,
-            fullscreen: true,
             transparent: true,
             alwaysOnTop: true,
-            // show: false,
+            show: false,
             webPreferences:
                 { nodeIntegration: true }
         })
@@ -54,8 +54,8 @@ function CreateSecondWindow() {
     secondWindow.on("close", () => {
         secondWindow = null
     })
-    secondWindow.show();
-    // secondWindow.maximize();
+
+    secondWindow.maximize();
 
 
 }
@@ -69,16 +69,36 @@ function CreateSecondWindow() {
 ipcMain.on("Countdown-Complete", function (event) {
     event.sender.send("renderDefaultClock");
 
-    // CreateSecondWindow();
+    CreateSecondWindow();
 
-    // secondWindow.once("ready-to-show", () => {
-    //     secondWindow.show();
-    // })
+    secondWindow.once("ready-to-show", () => {
+        secondWindow.show();
+    })
 })
+
+ipcMain.on("MaximizeWindow", function () {
+    mainWindow.show();
+})
+
+// ipcMain.on("AskForAnotherRound", function (event) {
+//     event.sender.send("display_alertbox");
+// })
 
 ipcMain.on("Close-Break-Window", function () {
     secondWindow.close();
 
+})
+
+//listen for Closing the App
+ipcMain.on("CloseApp", function () {
+    BrowserWindow.getAllWindows().forEach((window) => {
+        window.close()
+    })
+})
+
+//Listen for the Minimize app
+ipcMain.on("MinimizeApp", () => {
+    mainWindow.minimize();
 })
 
 /**
@@ -100,7 +120,7 @@ ipcMain.on("FiveSecondEarlyAlert", function (event, mode) {
 
 app.on("ready", () => {
     CreateMainWindow()
-    CreateSecondWindow();
+
 })
 app.on("activate", () => {
     if (mainWindow === null) {

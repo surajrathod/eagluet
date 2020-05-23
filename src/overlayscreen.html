@@ -8,47 +8,97 @@
     <title>Rest Window</title>
   </head>
   <body>
-    <div class="overlay">
-      <div class="workouts">
-        <h3 class="workout__text">Do this Workout</h3>
-        <p class="workout__text">Go somewhere else</p>
-        <ul class="workout__lists">
-          <li>Drink Water</li>
-          <li>Eye Rotate</li>
-          <li>Push Ups</li>
-          <li>Chair leg raise</li>
-        </ul>
-      </div>
-
-      <div class="clock__area">
-        <div class="clock__inner">
-          <div class="clock__shape clock__minutes">
-            <p class="clock__text">3</p>
-          </div>
-          <div class="clock__shape clock__seconds">
-            <p class="clock__text">30</p>
-          </div>
+    <div class="container">
+      <div class="overlay">
+        <div class="workouts">
+          <h3 class="workout__text">Do this Workout</h3>
+          <p class="workout__text">Go somewhere else</p>
+          <ul class="workout__lists">
+            <li>Drink Water</li>
+            <li>Eye Rotate</li>
+            <li>Push Ups</li>
+            <li>Chair leg raise</li>
+          </ul>
         </div>
-        <!-- <button class="btn btn__rounded clock__stop">Add 5 sec</button> -->
+
+        <h2 class="text_center">🧘‍♀️ Breadth with me 🧘‍♂️</h2>
+
+        <div class="clock__area anime__breadth">
+          <div class="clock__inner">
+            <div class="clock__shape clock__minutes">
+              <p class="clock__text">3</p>
+            </div>
+            <div class="clock__shape clock__seconds">
+              <p class="clock__text">30</p>
+            </div>
+          </div>
+          <!-- <button class="btn btn__rounded clock__stop">Add 5 sec</button> -->
+        </div>
+      </div>
+      <div class="alert__box">
+        <div class="icon alert_notify">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="var(--secondary-color)"
+            width="40px"
+            height="40px"
+          >
+            <path
+              d="M12 7c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1s-1-.45-1-1V8c0-.55.45-1 1-1zm-.01-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm1-3h-2v-2h2v2z"
+            />
+          </svg>
+        </div>
+        <p class="alert__text">Do you want Another Round ?</p>
+        <div class="btn__group">
+          <button class="btn btn__noround" id="nextround_no">No</button>
+          <button class="btn btn__filled" id="nextround_yes">Yes</button>
+        </div>
       </div>
     </div>
     <style>
       body {
         background-color: var(--transparent);
       }
+      .container {
+        position: relative;
+        overflow: hidden;
+      }
+      .alert__box {
+        background-color: var(--primary-color);
+
+        color: var(--offwhite);
+        text-align: center;
+        overflow: hidden;
+        border-radius: 5px;
+        width: 300px;
+        height: 200px;
+        position: absolute;
+        top: 60%;
+        right: 2%;
+        transform: translate(120%, 0);
+        transition: all 0.5s ease;
+      }
       .overlay {
+        position: relative;
         color: var(--primary-color);
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 0 auto;
         width: 25em;
-        padding: 6em;
+        padding: 4em;
         height: 100vh;
         background-color: var(--secondary-color);
       }
+      .alert_notify {
+        margin: 1em 0 0.5em;
+      }
+      .text_center {
+        color: var(--offwhite);
+      }
       .workouts {
-        margin-bottom: 5em;
+        margin-bottom: 3em;
       }
       ul.workout__lists {
         list-style-position: inside;
@@ -58,10 +108,29 @@
       ul.workout__lists li {
         margin-top: 0.4em;
       }
+      .btn__group {
+        position: absolute;
+        bottom: 0;
+      }
+      .btn__filled {
+        margin-right: 0;
+        border: none;
+        background-color: var(--primary-color-light);
+        color: var(--offwhite);
+        flex-basis: 50%;
+      }
+      .btn__filled:hover {
+        background-color: var(--offwhite);
+        color: var(--primary-color-light);
+      }
+      .btn__noround {
+        padding: 0 1em;
+        flex-basis: 50%;
+      }
     </style>
 
     <script>
-      // require("./js/overlayscreen.js");
+      require("./js/overlayscreen.js");
     </script>
   </body>
 </html>
