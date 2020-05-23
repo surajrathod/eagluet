@@ -12,6 +12,9 @@ module.exports.base = {
     CLOCK_PAUSE: document.querySelector(".clock__pause"),
     CLOCK_STOP: document.querySelector(".clock__stop"),
     RANGE_SLIDER: document.querySelectorAll(".range-slider__range"),
+    ALERT_BOX: document.querySelector(".alert__box"),
+    NEXTROUND_NO: document.querySelector(".nextround_no"),
+    NEXTROUND_YES: document.querySelector(".nextround_yes"),
 };
 
 module.exports.ConstantValue = {
