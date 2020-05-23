@@ -10,7 +10,8 @@ class Notification {
         notifier.notify({
             title: title,
             message: `${mode} ${message}`,
-            icon: path.join(__dirname, "/../assets/icons", icon)
+            icon: path.join(__dirname, "/../assets/icons", icon),
+            sound: true
         })
     }
     /**
