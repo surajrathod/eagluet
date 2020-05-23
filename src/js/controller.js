@@ -85,23 +85,19 @@ function saveData() {
 
 const toggleLeft = () => {
 
-  base.TIMER_SETTING_AREA.classList.toggle("--active_left")
+  base.TIMER_SETTING_AREA.classList.toggle("--slide_left")
   base.TIMER_SETTING.classList.toggle("--iconactive")
 
 }
 
 //close the window when click on close button
 function closeWindow() {
-  //  let window = remote.getCurrentWindow();
-  remote.BrowserWindow.getAllWindows().forEach((window) => {
-    window.close()
-  })
-  // window.close();
+  ipcRenderer.send("CloseApp");
+
 }
 //minimize the window when click on minimize button
 function minimizeWindow() {
-  let window = remote.getCurrentWindow();
-  window.minimize();
+  ipcRenderer.send("MinimizeApp");
 }
 
 const SliderRender = () => {
@@ -132,7 +128,7 @@ const SliderRender = () => {
     InputSlider.addEventListener("input", debounce(function (event) {
       event.srcElement.previousElementSibling.lastElementChild.textContent = `${event.target.value}:00`;
       UserSetting[event.srcElement.dataset.mode] = Number(event.target.value);
-      console.log(UserSetting, event.srcElement.dataset.mode)
+
 
     }, 20))
   })
@@ -183,7 +179,7 @@ window.addEventListener("load", () => {
 
   UserSetting = JSON.parse(Storage.getItem(ConstantValue.USER_STORAGE_KEY));
   FocusMode = new Timer(UserSetting.focus, "focus")
-  console.log(FocusMode)
+
   ClockSetup();
   SliderRender();
 });
