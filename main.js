@@ -5,7 +5,7 @@ const Notification = require("./src/js/Notification");
 
 const path = require("path");
 
-require("electron-reload")(__dirname);
+//require("electron-reload")(__dirname);
 
 app.allowRendererProcessReuse = true
 let mainWindow = null;
@@ -66,7 +66,7 @@ function CreateSecondWindow() {
  * send the 'renderDefaultClock' to the renderer process
  */
 
-ipcMain.on("Countdown-Complete", function (event) {
+ipcMain.on("CountdownComplete", function (event) {
     event.sender.send("renderDefaultClock");
 
     CreateSecondWindow();
@@ -84,7 +84,7 @@ ipcMain.on("MaximizeWindow", function () {
 //     event.sender.send("display_alertbox");
 // })
 
-ipcMain.on("Close-Break-Window", function () {
+ipcMain.on("CloseBreakWindow", function () {
     secondWindow.close();
 
 })
@@ -125,5 +125,11 @@ app.on("ready", () => {
 app.on("activate", () => {
     if (mainWindow === null) {
         CreateMainWindow();
+    }
+})
+
+app.on("window-all-closed", function () {
+    if (process.platform !== "darwin") {
+        app.quit()
     }
 })

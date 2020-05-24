@@ -1,13 +1,13 @@
 const { base, ConstantValue } = require("./utils")
-const { ipcRenderer } = require("electron")
+//const { ipcRenderer } = require("electron")
 const Timer = require("./Timer");
 
 
 
-let a = JSON.parse(localStorage.getItem(ConstantValue.USER_STORAGE_KEY));
-let breakMode = new Timer(a.break, "break")
+let UserSetting = JSON.parse(localStorage.getItem(ConstantValue.USER_STORAGE_KEY));
+let breakMode = new Timer(UserSetting.break, "break")
 
-base.CLOCK_MINUTES.firstElementChild.innerHTML = a["break"];
+base.CLOCK_MINUTES.firstElementChild.innerHTML = UserSetting["break"];
 base.CLOCK_SECONDS.firstElementChild.innerHTML = "00";
 
 breakMode.startTimer();
