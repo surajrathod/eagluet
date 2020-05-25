@@ -1,4 +1,4 @@
-const { remote, ipcRenderer } = require("electron");
+const { ipcRenderer } = require("electron");
 const { base, debounce, ConstantValue } = require("./utils");
 const Timer = require("./Timer");
 
@@ -9,7 +9,7 @@ let FocusMode;
 
 let defaultsetting = {
   focus: 25,
-  break: 1
+  break: 4
 };
 
 
