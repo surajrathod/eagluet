@@ -37,9 +37,9 @@ class Timer {
                 if (this.countdown <= 0) {
                     this.stopTimer()
                     if (this.mode == "focus") {
-                        ipcRenderer.send("CountdownComplete");
+                        ipcRenderer.send("Countdown-Complete");
                     } else if (this.mode == "break") {
-                        ipcRenderer.send("CloseBreakWindow")
+                        ipcRenderer.send("Close-Break-Window")
                         ipcRenderer.send("MaximizeWindow")
                     }
 
