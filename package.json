@@ -1,19 +1,61 @@
 {
-  "name": "restme",
+  "name": "eagluet",
   "version": "1.0.0",
-  "description": "rest and focus app",
+  "author": "Suraj Rathod",
+  "description": "stay productive while work-Focus and Rest",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.51",
+    "@electron-forge/maker-deb": "^6.0.0-beta.51",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.51",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
+    "@electron-forge/maker-zip": "^6.0.0-beta.51",
     "electron": "^8.3.0",
     "electron-reload": "^1.5.0",
     "eslint": "^7.0.0"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "node-notifier": "^7.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "asar":true
+
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "eagluet"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "build":{
+    "asar":true
   }
 }
