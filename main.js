@@ -2,6 +2,9 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const Notification = require("./src/js/Notification");
 
 
+if (require("electron-squirrel-startup")) { // eslint-disable-line global-require
+    app.quit();
+}
 
 const path = require("path");
 
@@ -22,7 +25,6 @@ function CreateMainWindow() {
         frame: false,
         show: false,
         resizable: false,
-
         webPreferences: {
             nodeIntegration: true
         },
@@ -46,6 +48,7 @@ function CreateSecondWindow() {
             frame: false,
             transparent: true,
             alwaysOnTop: true,
+            resizable: false,
             show: false,
             webPreferences:
                 { nodeIntegration: true }
@@ -54,10 +57,7 @@ function CreateSecondWindow() {
     secondWindow.on("close", () => {
         secondWindow = null
     })
-
     secondWindow.maximize();
-
-
 }
 
 /**
@@ -122,6 +122,12 @@ app.on("ready", () => {
     CreateMainWindow()
 
 })
+app.on("window-all-closed", () => {
+
+    if (process.platform !== "darwin") {
+        app.quit();
+    }
+});
 app.on("activate", () => {
     if (mainWindow === null) {
         CreateMainWindow();
