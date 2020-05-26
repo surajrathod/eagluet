@@ -14,6 +14,7 @@ class Notification {
             sound: true
         })
     }
+    
     /**
      * alert to the user when 5 second is left on the clock
      * @param {Object} options 
