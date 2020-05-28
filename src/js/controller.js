@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-const { base, debounce, ConstantValue } = require("./utils");
+const { element, debounce, ConstantValue } = require("./utils");
 const Timer = require("./Timer");
 
 
@@ -13,7 +13,7 @@ let defaultsetting = {
 };
 
 
-base.CLOCK_STOP.addEventListener("click", () => {
+element.CLOCK_STOP.addEventListener("click", () => {
   //Stop or Reset the timer
   FocusMode.stopTimer();
   //Render the button based on playing or pause
@@ -28,17 +28,17 @@ base.CLOCK_STOP.addEventListener("click", () => {
 /**when we click on Play Button hide the playbutton and 
  * visible the pause button
  * start the Timer for the Focus Mode */
-base.CLOCK_PLAY.addEventListener("click", function () {
-  base.CLOCK_PLAY.classList.add("hidden");
-  base.CLOCK_PAUSE.classList.remove("hidden");
+element.CLOCK_PLAY.addEventListener("click", function () {
+  element.CLOCK_PLAY.classList.add("hidden");
+  element.CLOCK_PAUSE.classList.remove("hidden");
   FocusMode.startTimer();
 })
 /**when we click on Pause Button hide the pausebutton and 
  * visible the play button 
  * pause the timer for Focus Mode*/
-base.CLOCK_PAUSE.addEventListener("click", function () {
-  base.CLOCK_PLAY.classList.remove("hidden");
-  base.CLOCK_PAUSE.classList.add("hidden");
+element.CLOCK_PAUSE.addEventListener("click", function () {
+  element.CLOCK_PLAY.classList.remove("hidden");
+  element.CLOCK_PAUSE.classList.add("hidden");
   FocusMode.pauseTimer();
 })
 
@@ -48,19 +48,19 @@ function ClockBtnRender() {
 
   if (!FocusMode.isPlaying()) {
 
-    base.CLOCK_PLAY.classList.remove("hidden")
-    base.CLOCK_PAUSE.classList.add("hidden")
+    element.CLOCK_PLAY.classList.remove("hidden")
+    element.CLOCK_PAUSE.classList.add("hidden")
 
   } else {
 
-    base.CLOCK_PLAY.classList.add("hidden")
-    base.CLOCK_PAUSE.classList.remove("hidden")
+    element.CLOCK_PLAY.classList.add("hidden")
+    element.CLOCK_PAUSE.classList.remove("hidden")
   }
 }
 //initial setup function
 function ClockSetup() {
-  base.CLOCK_MINUTES.firstElementChild.innerHTML = UserSetting.focus
-  base.CLOCK_SECONDS.firstElementChild.innerHTML = "00"
+  element.CLOCK_MINUTES.firstElementChild.innerHTML = UserSetting.focus
+  element.CLOCK_SECONDS.firstElementChild.innerHTML = "00"
 }
 
 /**save the data to the localStorage of the browser for the later use 
@@ -85,8 +85,8 @@ function saveData() {
 
 const toggleLeft = () => {
 
-  base.TIMER_SETTING_AREA.classList.toggle("--slide_left")
-  base.TIMER_SETTING.classList.toggle("--iconactive")
+  element.TIMER_SETTING_AREA.classList.toggle("--slide_left")
+  element.TIMER_SETTING.classList.toggle("--iconactive")
 
 }
 
@@ -107,7 +107,7 @@ const SliderRender = () => {
    * --set the text to input value of the input
    * --set the defaultsetting to the current selected value
    */
-  base.RANGE_SLIDER.forEach((InputSlider) => {
+  element.RANGE_SLIDER.forEach((InputSlider) => {
 
     let dataset = InputSlider.dataset.mode;
     let TextElement = InputSlider.parentNode.firstElementChild.lastElementChild;
@@ -137,17 +137,17 @@ const SliderRender = () => {
 
 
 //call the close window function
-base.CLOSE.addEventListener("click", closeWindow);
+element.CLOSE.addEventListener("click", closeWindow);
 
 //call the minimizewindow window function
-base.MINIMIZE.addEventListener("click", minimizeWindow);
+element.MINIMIZE.addEventListener("click", minimizeWindow);
 
 //display the timer setting area when we click on Timer button
-base.TIMER_SETTING.addEventListener("click", toggleLeft);
+element.TIMER_SETTING.addEventListener("click", toggleLeft);
 
 
 //cancel the setting and set previous setting
-base.RESET.addEventListener("click", () => {
+element.RESET.addEventListener("click", () => {
   Storage.setItem(ConstantValue.USER_STORAGE_KEY, JSON.stringify(defaultsetting));
   UserSetting = JSON.parse(Storage.getItem(ConstantValue.DEFAULT_STORAGE_KEY));
   // UserSetting = defaultsetting;
@@ -161,7 +161,7 @@ base.RESET.addEventListener("click", () => {
   SliderRender();
 });
 //save the setting 
-base.SAVE.addEventListener("click", saveData);
+element.SAVE.addEventListener("click", saveData);
 
 //initially load the Clock to it default state
 window.addEventListener("load", () => {

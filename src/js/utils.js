@@ -1,4 +1,4 @@
-module.exports.base = {
+module.exports.element = {
     CLOSE: document.querySelector(".close__btn"),
     MINIMIZE: document.querySelector(".minimize__btn"),
     TIMER_SETTING: document.querySelector(".timer__btn"),
