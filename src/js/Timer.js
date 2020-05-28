@@ -1,4 +1,4 @@
-const { base } = require("./utils");
+const { element } = require("./utils");
 const { ipcRenderer } = require("electron");
 // const notifier = require("node-notifier");
 
@@ -85,8 +85,8 @@ class Timer {
         return this.playing;
     }
     _renderMinuteSecond(min, sec) {
-        base.CLOCK_MINUTES.firstElementChild.innerHTML = min;
-        base.CLOCK_SECONDS.firstElementChild.innerHTML = sec;
+        element.CLOCK_MINUTES.firstElementChild.innerHTML = min;
+        element.CLOCK_SECONDS.firstElementChild.innerHTML = sec;
     }
 }
 

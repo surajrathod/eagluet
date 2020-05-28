@@ -2,9 +2,11 @@ const join = require("path").join;
 
 module.exports = {
     packagerConfig: {
-        asar: true,
+        asar: {
+            unpack: "**/node_modules/node-notifier/vendor/**"
+        },
         extraResource: "src/assets/icons",
-        icon: join(__dirname, "/src/assets/icons/icon.png"),
+        icon: join(__dirname, "/src/assets/icons/focus.png"),
         overwrite: true
     },
     makers: [
@@ -12,7 +14,7 @@ module.exports = {
             name: "@electron-forge/maker-squirrel",
             config: {
                 name: "eagluet",
-                iconUrl: join(__dirname, "/src/assets/icons/icon.ico")
+                iconUrl: join(__dirname, "/src/assets/icons/focus.ico")
             }
         },
         {
