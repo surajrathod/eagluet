@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         node_version: ['12']
-        os: [ubuntu-latest, windows-latest]
+        os: [windows-latest]
     steps:
      - uses: actions/checkout@v2
 
@@ -35,6 +35,5 @@ jobs:
        
      - uses: actions/upload-artifact@v2
        with:
-        name: ${{matrix.os}}
-        path: out/make
+        path: out/make/**/*.exe
 
