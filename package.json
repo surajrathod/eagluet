@@ -1,5 +1,6 @@
 {
   "name": "eagluet",
+  "productName": "Eagluet",
   "version": "1.0.0",
   "author": "Suraj Rathod",
   "description": "stay productive while work-Focus and Rest",
@@ -17,6 +18,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.51",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
     "@electron-forge/maker-zip": "^6.0.0-beta.51",
+    "@electron-forge/publisher-github": "^6.0.0-beta.51",
     "electron": "^8.3.0",
     "electron-reload": "^1.5.0",
     "eslint": "^7.0.0"

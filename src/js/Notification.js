@@ -9,7 +9,8 @@ class Notification {
             title: title,
             message: `${mode} ${message}`,
             icon: require("path").join(__dirname, "/../assets/icons", icon),
-            sound: true
+            sound: true,
+            appID: "eagluet"
         })
     }
 

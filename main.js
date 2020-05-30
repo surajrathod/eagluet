@@ -41,7 +41,6 @@ function CreateMainWindow() {
         mainWindow.show();
     })
 }
-
 function CreateSecondWindow() {
     secondWindow = new BrowserWindow(
         {
