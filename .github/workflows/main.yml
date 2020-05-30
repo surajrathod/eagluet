@@ -36,5 +36,5 @@ jobs:
      - uses: actions/upload-artifact@v2
        with:
         name: ${{matrix.os}}.exe
-        path: out/make/**/*.exe
+        path: out/make/squirrel.windows/x64/**.exe
 
