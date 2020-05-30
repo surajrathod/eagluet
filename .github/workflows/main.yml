@@ -33,5 +33,6 @@ jobs:
      - name: make platform file
        run: npm run make
        
-     - name: Git Release
-       uses: anton-yurchenko/git-release@v3.1.2
+     - name: GitHub Upload Release Artifacts
+       uses: Roang-zero1/github-upload-release-artifacts-action@v2.1.0
+    
