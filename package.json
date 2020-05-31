@@ -34,8 +34,8 @@
     "forge": "forge.config.js"
   },
   "release-it": {
-    "git":{
-      "requireCleanWorkingDir":false
+    "git": {
+      "requireCleanWorkingDir": false
     },
     "github": {
       "release": true,
