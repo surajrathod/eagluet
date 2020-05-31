@@ -1,7 +1,10 @@
 {
   "name": "eagluet",
   "version": "0.0.2",
-  "author": "Suraj Rathod",
+  "author": {
+    "name": "SurajRathod",
+    "email": "surajrathod999@gmail.com"
+  },
   "description": "stay productive while work-Focus and Rest",
   "repository": {
     "type": "git",
