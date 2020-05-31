@@ -9,6 +9,7 @@
 }
 
 body {
+  overflow: hidden;
   font-size: 20px;
   font-family: Nunito, sans-serif;
   box-sizing: border-box;
@@ -108,19 +109,46 @@ nav.navigations {
 .clock__btn:hover > svg {
   fill: var(--primary-color);
 }
-.timer-setting__area {
+
+.setting {
   position: absolute;
   top: 2em;
   width: 22.5em;
   height: 15em;
   background-color: var(--primary-color);
-  transform: translate(-100%, 0);
-  /*transform: translate(0, 0);*/
   transition: all 0.5s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.info-about {
+  color: var(--offwhite-light);
+  transform: translate(100%, 0);
+  overflow: hidden;
+}
+.info-about__link {
+  color: var(--offwhite-light);
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: 200;
+  cursor: pointer;
+}
+.info-about__link:hover {
+  text-decoration: underline;
+}
+.info-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+.info-text {
+  margin-top: 4em;
+  font-size: 0.9em;
+}
+.timer-setting__area {
   justify-content: space-around;
+  transform: translate(-100%, 0);
 }
 .--slide_left {
   transform: translate(0, 0);

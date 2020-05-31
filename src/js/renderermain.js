@@ -1,4 +1,4 @@
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, shell } = require("electron");
 const { element, debounce, ConstantValue } = require("./utils");
 const Timer = require("./Timer");
 
@@ -84,9 +84,20 @@ function saveData() {
 
 
 const toggleLeft = () => {
-
+  if (element.INFO_BTN.classList.contains("--iconactive")) {
+    toggleRight()
+  }
   element.TIMER_SETTING_AREA.classList.toggle("--slide_left")
   element.TIMER_SETTING.classList.toggle("--iconactive")
+
+}
+const toggleRight = () => {
+
+  if (element.TIMER_SETTING.classList.contains("--iconactive")) {
+    toggleLeft();
+  }
+  element.INFO_ABOUT.classList.toggle("--slide_right")
+  element.INFO_BTN.classList.toggle("--iconactive")
 
 }
 
@@ -145,6 +156,7 @@ element.MINIMIZE.addEventListener("click", minimizeWindow);
 //display the timer setting area when we click on Timer button
 element.TIMER_SETTING.addEventListener("click", toggleLeft);
 
+element.INFO_BTN.addEventListener("click", toggleRight);
 
 //cancel the setting and set previous setting
 element.RESET.addEventListener("click", () => {
@@ -165,6 +177,9 @@ element.SAVE.addEventListener("click", saveData);
 
 //initially load the Clock to it default state
 window.addEventListener("load", () => {
+
+
+
   /**
    * if the localStorage does not have the value
    * -set the Default Value initially
@@ -182,7 +197,35 @@ window.addEventListener("load", () => {
 
   ClockSetup();
   SliderRender();
+
+  renderInfoScreen();
+
+
 });
+
+function renderInfoScreen() {
+
+  let info_about = `
+  <figure class="info-figure">
+  <img
+  src="./assets/icons/Eagluet.png"
+  width="100"
+  height="100"
+  alt="Eagluet Logo"
+  />
+  <figcaption class="info-about__text">Open Source Pomodoro Timer</figcaption>
+  </figure>
+  <p>${ipcRenderer.sendSync("AppVersion")}<p>
+  <p class="info-text">To Contribute Visit <p class="info-about__link">GitHub</p></p>`
+  element.INFO_ABOUT.insertAdjacentHTML("beforeend", info_about);
+
+  element.INFO_ABOUT.querySelector(".info-about__link").addEventListener("click", function () {
+    shell.openExternal(ipcRenderer.sendSync("AppLink"))
+  })
+}
+
+
+
 
 /**
  * Listen for the 'renderDefaultClock'

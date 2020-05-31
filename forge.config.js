@@ -13,7 +13,7 @@ module.exports = {
         {
             name: "@electron-forge/maker-squirrel",
             config: {
-                name: "eagluet",
+                name: "Eagluet",
                 iconUrl: join(__dirname, "/src/assets/icons/Eagluet.ico"),
                 setupIcon: join(__dirname, "/src/assets/icons/Eagluet.ico"),
                 loadingGif: join(__dirname, "/src/assets/icons/Loading.gif")
@@ -32,22 +32,6 @@ module.exports = {
                     icon: join(__dirname, "/src/assets/icons/Eagluet.png"),
                     name: "eagluet",
                     productName: "Eagluet"
-                }
-            }
-        },
-        {
-            name: "@electron-forge/maker-rpm",
-            config: {}
-        }
-    ],
-    publishers: [
-        {
-            name: "@electron-forge/publisher-github",
-            config: {
-                prerelease: false,
-                repository: {
-                    name: "eagluet",
-                    owner: "surajrathod"
                 }
             }
         }

@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "author": "Suraj Rathod",
   "description": "stay productive while work-Focus and Rest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/surajrathod/eagluet.git"
+  },
   "main": "main.js",
   "scripts": {
-    "start": "electron-forge start",
+    "start": " electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
+    "make": " electron-forge make",
     "publish": "electron-forge publish"
   },
   "license": "MIT",
@@ -20,11 +24,11 @@
     "@electron-forge/publisher-github": "^6.0.0-beta.51",
     "electron": "^8.3.0",
     "electron-reload": "^1.5.0",
-    "eslint": "^7.0.0"
+    "eslint": "^7.1.0"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "node-notifier": "^7.0.0"
+    "node-notifier": "^7.0.1"
   },
   "config": {
     "forge": "forge.config.js"

@@ -1,14 +1,17 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const Notification = require("./src/js/Notification");
+const path = require("path");
+
+let APP_NAME = require(path.join(__dirname, "/package.json")).name;
+let APP_GITURL = require(path.join(__dirname, "/package.json")).repository.url;
+let APP_VERSION = require(path.join(__dirname, "/package.json")).version;
+
 
 
 if (require("electron-squirrel-startup")) { // eslint-disable-line global-require
     app.quit();
 }
 
-const path = require("path");
-
-//require("electron-reload")(__dirname);
 
 app.allowRendererProcessReuse = true
 let mainWindow = null;
@@ -59,6 +62,17 @@ function CreateSecondWindow() {
     secondWindow.maximize();
 }
 
+
+ipcMain.on("AppName", function (event) {
+    event.returnValue = APP_NAME;
+})
+
+ipcMain.on("AppLink", function (event) {
+    event.returnValue = APP_GITURL;
+})
+ipcMain.on("AppVersion", function (event) {
+    event.returnValue = APP_VERSION;
+})
 /**
  * Listen for the 'Countdown-Complete' event from the 
  * renderer process

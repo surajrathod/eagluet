@@ -2,6 +2,7 @@ module.exports.element = {
     CLOSE: document.querySelector(".close__btn"),
     MINIMIZE: document.querySelector(".minimize__btn"),
     TIMER_SETTING: document.querySelector(".timer__btn"),
+    INFO_BTN: document.querySelector(".info__btn"),
     TIMER_SETTING_AREA: document.querySelector(".timer-setting__area"),
     RESET: document.querySelector(".reset__btn"),
     SAVE: document.querySelector(".save__btn"),
@@ -12,9 +13,8 @@ module.exports.element = {
     CLOCK_PAUSE: document.querySelector(".clock__pause"),
     CLOCK_STOP: document.querySelector(".clock__stop"),
     RANGE_SLIDER: document.querySelectorAll(".range-slider__range"),
-    ALERT_BOX: document.querySelector(".alert__box"),
-    NEXTROUND_NO: document.querySelector(".nextround_no"),
-    NEXTROUND_YES: document.querySelector(".nextround_yes"),
+    INFO_ABOUT: document.querySelector(".info-about"),
+
 };
 
 module.exports.ConstantValue = {
