@@ -41,6 +41,7 @@
         "out/make/**/*.nupkg",
         "out/make/**/*.deb"
       ]
-    }
+    },
+    "npm": false
   }
 }
