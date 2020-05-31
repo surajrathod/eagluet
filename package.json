@@ -34,6 +34,9 @@
     "forge": "forge.config.js"
   },
   "release-it": {
+    "git":{
+      "requireCleanWorkingDir":false
+    },
     "github": {
       "release": true,
       "assets": [
