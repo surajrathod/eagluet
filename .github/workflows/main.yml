@@ -11,7 +11,7 @@ on:
       - 'package.json'
   
 env:
-  GITHUB_TOKEN: ${{secret.RELEASE_TOKEN}} 
+  GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}} 
 
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
