@@ -6,48 +6,37 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
-    #paths: 
-     # - 'package.json'
-  
+    branches: [master]
+    paths:
+      - "package.json"
+
+env:
+  GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   windows:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-     - name: Checkout Master Branch
-       uses: actions/checkout@v2
-       
-     - name: Setup Node.js
-       uses: actions/setup-node@v1.4.2
-       with:
-         node-version: 12
-    
-     - name: install package
-       run: npm install
-       
-     - name: make platform file
-       run: npm run make
-       
-     - name: Create Release
-       id: create_release
-       uses: actions/create-release@v1
-       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-        
-     - name: Upload Release Asset
-       id: upload-release-asset 
-       uses: actions/upload-release-asset@v1
-       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: out/make/squirrel.windows/x64/*.exe
+      - name: Checkout Master Branch
+        uses: actions/checkout@v2
 
+      - run: |
+          git config --global user.name SurajRathod 
+          git config --global user.email surajrathod999@gmail.com
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{matrix.node_version}}
+
+      - name: install package
+        run: npm install
+
+      - name: make platform file
+        run: npm run make
+
+      - name: release to Github
+        run: npm run release
