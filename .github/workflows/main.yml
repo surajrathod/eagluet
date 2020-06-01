@@ -7,8 +7,8 @@ name: CI
 on:
   push:
     branches: [ master ]
-    paths: 
-      - 'package.json'
+    #paths: 
+     # - 'package.json'
   
 env:
   GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}} 
@@ -17,25 +17,17 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  windows:
     # The type of runner that the job will run on
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        node_version: ['12']
-        os: [windows-latest,ubuntu-latest]
+    runs-on: windows-latest
     steps:
      - name: Checkout Master Branch
        uses: actions/checkout@v2
        
-     - run: | 
-          git config --global user.name SurajRathod 
-          git config --global user.email surajrathod999@gmail.com
-
      - name: Setup Node.js
        uses: actions/setup-node@v1.4.2
        with:
-         node-version: ${{matrix.node_version}}
+         node-version: 12
     
      - name: install package
        run: npm install
@@ -43,6 +35,7 @@ jobs:
      - name: make platform file
        run: npm run make
        
-     - name: release to Github
-       run: npm run release
+     - uses: actions/upload-artifact@v2
+       with:
+        path: out/make/squirrel.windows/x64/*.exe
 
