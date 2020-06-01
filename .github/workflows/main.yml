@@ -27,6 +27,9 @@ jobs:
     steps:
      - name: Checkout Master Branch
        uses: actions/checkout@v2
+       run: | 
+          git config --global user.name SurajRathod 
+          git config --global user.email surajrathod999@gmail.com
 
      - name: Setup Node.js
        uses: actions/setup-node@v1.4.2
