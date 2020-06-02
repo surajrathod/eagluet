@@ -2,6 +2,9 @@
 
 Pomodora Clock which force you to Rest in Rest Mode.
 
+![Eagluet](https://res.cloudinary.com/atnak/image/upload/v1591102778/homescreen_udwdgd.png)
+
+
 Features
 
 - simple to use
