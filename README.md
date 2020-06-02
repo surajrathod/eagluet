@@ -1,4 +1,5 @@
 # Eagluet
+<a href="https://www.producthunt.com/posts/eagluet?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-eagluet" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=204635&theme=light" alt="Eagluet - Simple Pomodora Time with- Force To Focus | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
 Pomodora Clock which force you to Rest in Rest Mode.
 
