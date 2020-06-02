@@ -8,7 +8,8 @@ class Notification {
         notifier.notify({
             title: title,
             message: `${mode} ${message}`,
-            icon: require("path").join(__dirname, "/../assets/icons", icon),
+            //path to the unziped icon file when packed 
+            icon: require("path").join(__dirname, "/../../../icons", icon),
             sound: true,
             appID: "eagluet"
         })

@@ -7,7 +7,15 @@ module.exports = {
         },
         extraResource: "src/assets/icons",
         icon: join(__dirname, "/src/assets/icons/Eagluet.png"),
-        overwrite: true
+        overwrite: true,
+        //ignore file to be packaged
+        ignore: [
+            "forge.config.js",
+            ".gitignore",
+            ".eslintrc.json",
+            ".eslintignore",
+            ".github"
+        ]
     },
     makers: [
         {
