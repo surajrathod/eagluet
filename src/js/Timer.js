@@ -39,13 +39,11 @@ class Timer {
           } else if (this.mode === 'break') {
             ipcRenderer.send('CloseBreakWindow')
             ipcRenderer.send('MaximizeWindow')
+            ipcRenderer.send('StartNextRound')
           }
         } else if (this.countdown === 5000) {
           // if counter has left with 5 second
           // notify the user for that
-          if (this.mode === 'break') {
-            ipcRenderer.send('AskForAnotherRound')
-          }
           this._renderMinuteSecond(min, sec)
           ipcRenderer.send('FiveSecondEarlyAlert', this.mode)
         } else {

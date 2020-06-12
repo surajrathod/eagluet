@@ -99,20 +99,30 @@ const SliderRender = () => {
     const dataset = InputSlider.dataset.mode
     const TextElement = InputSlider.parentNode.firstElementChild.lastElementChild
 
-    if (dataset === 'focus') {
-      InputSlider.value = UserSetting.focus
-      TextElement.innerHTML = `${UserSetting.focus}:00`
-    } else if (dataset === 'break') {
-      InputSlider.value = UserSetting.break
-      TextElement.innerHTML = `${UserSetting.break}:00`
+    switch (dataset) {
+      case 'focus':
+        renderValue(InputSlider, TextElement, dataset)
+        break
+      case 'break':
+        renderValue(InputSlider, TextElement, dataset)
+        break
+      case 'rounds':
+        renderValue(InputSlider, TextElement, dataset)
+        break
     }
-
     /** limit the event call for the slider by debouncing the call  */
     InputSlider.addEventListener('input', debounce(function (event) {
-      event.srcElement.previousElementSibling.lastElementChild.textContent = `${event.target.value}:00`
+      event.srcElement.previousElementSibling.lastElementChild.textContent = `${event.target.value}`
       UserSetting[event.srcElement.dataset.mode] = Number(event.target.value)
+      ipcRenderer.send('SetUserRounds', UserSetting.rounds)
     }, 20))
   })
+  ipcRenderer.send('SetUserRounds', UserSetting.rounds)
+}
+
+function renderValue (InputSlider, TextElement, datasetmode) {
+  InputSlider.value = UserSetting[datasetmode]
+  TextElement.innerHTML = `${UserSetting[datasetmode]}`
 }
 
 // call the close window function
@@ -193,7 +203,13 @@ function renderInfoScreen () {
  *
  */
 
-ipcRenderer.on('renderDefaultClock', function () {
+ipcRenderer.on('renderDefaultClock', () => {
   ClockBtnRender()
   ClockSetup()
+})
+
+ipcRenderer.on('ResetAndStart', () => {
+  console.log(FocusMode)
+  FocusMode.startTimer()
+  ClockBtnRender()
 })

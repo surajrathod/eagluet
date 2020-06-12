@@ -9,8 +9,11 @@ const APP_VERSION = require(path.join(__dirname, '/package.json')).version
 
 const defaultSetting = {
   focus: 25,
-  break: 4
+  break: 4,
+  rounds: 2
 }
+let CurrentRound = 1
+let UserRound = null
 
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit()
@@ -37,19 +40,11 @@ function CreateMainWindow () {
     webPreferences: {
       nodeIntegration: true
     }
-
   }
   mainWindow = new BrowserWindow(MainWindowOptions)
   mainWindow.loadURL(path.join('file://', __dirname, '/src/index.html'))
-
-  mainWindow.on('close', () => {
-    mainWindow = null
-  })
-
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show()
-    console.log(process.env)
-  })
+  mainWindow.on('close', () => { mainWindow = null })
+  mainWindow.once('ready-to-show', () => { mainWindow.show() })
 }
 function CreateSecondWindow () {
   secondWindow = new BrowserWindow(
@@ -66,16 +61,15 @@ function CreateSecondWindow () {
   secondWindow.maximize()
 }
 
-ipcMain.on('AppName', function (event) {
-  event.returnValue = APP_NAME
-})
+ipcMain.on('AppName', (event) => { event.returnValue = APP_NAME })
+ipcMain.on('AppLink', (event) => { event.returnValue = APP_GITURL })
+ipcMain.on('MinimizeApp', () => { mainWindow.minimize() })
+ipcMain.on('MaximizeWindow', () => { mainWindow.show() })
+ipcMain.on('CloseBreakWindow', () => { secondWindow.close() })
+ipcMain.on('SetUserRounds', (e, round) => { UserRound = Number(round) })
+ipcMain.on('AppVersion', (event) => { event.returnValue = APP_VERSION })
+ipcMain.on('JsonDefaultSettings', (e) => { e.returnValue = JSON.stringify(defaultSetting) })
 
-ipcMain.on('AppLink', function (event) {
-  event.returnValue = APP_GITURL
-})
-ipcMain.on('AppVersion', function (event) {
-  event.returnValue = APP_VERSION
-})
 /**
  * Listen for the 'Countdown-Complete' event from the
  * renderer process
@@ -86,22 +80,17 @@ ipcMain.on('CountdownComplete', function (event) {
   event.sender.send('renderDefaultClock')
 
   CreateSecondWindow()
-
-  secondWindow.once('ready-to-show', () => {
-    secondWindow.show()
-  })
+  secondWindow.once('ready-to-show', () => { secondWindow.show() })
 })
 
-ipcMain.on('MaximizeWindow', function () {
-  mainWindow.show()
-})
+ipcMain.on('StartNextRound', function (event) {
+  if (CurrentRound < UserRound) {
 
-// ipcMain.on("AskForAnotherRound", function (event) {
-//     event.sender.send("display_alertbox");
-// })
-
-ipcMain.on('CloseBreakWindow', function () {
-  secondWindow.close()
+    mainWindow.webContents.send('ResetAndStart')
+    CurrentRound++
+  } else {
+    CurrentRound = 1
+  }
 })
 
 // listen for Closing the App
@@ -111,26 +100,25 @@ ipcMain.on('CloseApp', function () {
   })
 })
 
-// Listen for the Minimize app
-ipcMain.on('MinimizeApp', () => {
-  mainWindow.minimize()
-})
-
 /**
  * All the Notification will be in main Process
  */
 
 // this will we called to the notification class which will display the message
 ipcMain.on('FiveSecondEarlyAlert', function (event, mode) {
+  if (mode === 'break') {
+    if (CurrentRound === UserRound) {
+      return
+    }
+  }
   notification.AlertFiveSecondEarly({
     title: 'Information',
     mode: mode,
     message: 'will start in 5 sec'
   })
 })
-ipcMain.on('JsonDefaultSettings', (e) => {
-  e.returnValue = JSON.stringify(defaultSetting)
-})
+
+// app settings
 app.on('ready', () => {
   CreateMainWindow()
 })
