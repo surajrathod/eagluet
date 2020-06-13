@@ -14,8 +14,7 @@ Features
 
 ## Download
 
-1. Windows [Download](https://github.com/surajrathod/eagluet/releases/download/0.0.1/eagluet-0.0.1.Setup.exe)
-2. Ubuntu  [Download](https://github.com/surajrathod/eagluet/releases/download/0.0.1/eagluet_0.0.1_amd64.deb)
+1. Windows [Download](https://github.com/surajrathod/eagluet/releases/download/v0.1.2/eagluet-0.1.2.Setup.exe)
 
 ## Running Locally
 1. Clone the Repo
