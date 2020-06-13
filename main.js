@@ -131,9 +131,17 @@ app.on('activate', () => {
     CreateMainWindow()
   }
 })
-app.on('second-instance', () => {
-  if (mainWindow.isMaximize()) {
-    mainWindow.restore()
-  }
-  mainWindow.focus()
-})
+/*
+* single Instance of the app
+*/
+const getTheLock = app.requestSingleInstanceLock()
+if (!getTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', () => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.restore()
+    }
+    mainWindow.focus()
+  })
+}
