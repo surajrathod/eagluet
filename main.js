@@ -63,11 +63,11 @@ function CreateSecondWindow () {
 
 ipcMain.on('AppName', (event) => { event.returnValue = APP_NAME })
 ipcMain.on('AppLink', (event) => { event.returnValue = APP_GITURL })
+ipcMain.on('AppVersion', (event) => { event.returnValue = APP_VERSION })
 ipcMain.on('MinimizeApp', () => { mainWindow.minimize() })
 ipcMain.on('MaximizeWindow', () => { mainWindow.show() })
 ipcMain.on('CloseBreakWindow', () => { secondWindow.close() })
 ipcMain.on('SetUserRounds', (e, round) => { UserRound = Number(round) })
-ipcMain.on('AppVersion', (event) => { event.returnValue = APP_VERSION })
 ipcMain.on('JsonDefaultSettings', (e) => { e.returnValue = JSON.stringify(defaultSetting) })
 
 /**
@@ -85,7 +85,6 @@ ipcMain.on('CountdownComplete', function (event) {
 
 ipcMain.on('StartNextRound', function (event) {
   if (CurrentRound < UserRound) {
-
     mainWindow.webContents.send('ResetAndStart')
     CurrentRound++
   } else {
@@ -94,7 +93,7 @@ ipcMain.on('StartNextRound', function (event) {
 })
 
 // listen for Closing the App
-ipcMain.on('CloseApp', function () {
+ipcMain.on('CloseApp', () => {
   BrowserWindow.getAllWindows().forEach((window) => {
     window.close()
   })

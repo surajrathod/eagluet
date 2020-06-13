@@ -209,7 +209,6 @@ ipcRenderer.on('renderDefaultClock', () => {
 })
 
 ipcRenderer.on('ResetAndStart', () => {
-  console.log(FocusMode)
   FocusMode.startTimer()
   ClockBtnRender()
 })
