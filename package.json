@@ -32,7 +32,7 @@
   "dependencies": {
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
-    "node-notifier": "^7.0.1"
+    "node-notifier": "^7.0.2"
   },
   "config": {
     "forge": "forge.config.js"
