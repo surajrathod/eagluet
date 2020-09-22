@@ -24,5 +24,5 @@ Features
 ## Contributing
 
 Found the Bug create a new Issue
-
+For Linting We are using StandardJS - JavaScript Standard Style
 
